@@ -1,0 +1,9 @@
+spring:
+  application:
+    name: auth-srv
+  cloud:
+    config:
+      uri: http://localhost:5000
+      fail-fast: true
+      password: admin
+      username: user
