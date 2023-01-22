@@ -5,31 +5,34 @@
     <parent>
         <groupId>org.springframework.boot</groupId>
         <artifactId>spring-boot-starter-parent</artifactId>
-        <version>2.7.4</version>
+        <version>2.7.5</version>
         <relativePath/> <!-- lookup parent from repository -->
     </parent>
     <groupId>ru.gothmog.ws</groupId>
-    <artifactId>auth-srv</artifactId>
+    <artifactId>auth-ws-app</artifactId>
     <version>0.0.1-SNAPSHOT</version>
-    <packaging>war</packaging>
+    <packaging>jar</packaging>
     <name>auth-ws-app</name>
     <description>auth-ws-app</description>
     <properties>
         <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <apache.commons.commons-lang3.version>3.12.0</apache.commons.commons-lang3.version>
+        <core-v3-swagger-annotations.ver>2.2.8</core-v3-swagger-annotations.ver>
+        <spring-cloud.version>2022.0.0</spring-cloud.version>
+        <springframework.cloud>3.1.5</springframework.cloud>
+        <spring-cloud-last.version>4.0.0</spring-cloud-last.version>
         <testcontainers.version>1.17.5</testcontainers.version>
-        <springframework.cloud>3.1.4</springframework.cloud>
         <sonar-maven-plugin>3.4.0.905</sonar-maven-plugin>
-        <model.mapper.version>3.1.0</model.mapper.version>
-        <openapi.ui.version>1.6.11</openapi.ui.version>
-        <postgresql.version>42.5.0</postgresql.version>
+        <model.mapper.version>3.1.1</model.mapper.version>
+        <openapi.ui.version>1.6.14</openapi.ui.version>
+        <postgresql.version>42.5.1</postgresql.version>
         <h2database.version>2.1.214</h2database.version>
-        <liquibase.version>4.17.1</liquibase.version>
+        <liquibase.version>4.17.2</liquibase.version>
         <org.hibernate>5.6.7.Final</org.hibernate>
         <jacoco.version>0.8.6</jacoco.version>
         <jjwt.version>0.11.2</jjwt.version>
-        <jackson.core>2.13.4</jackson.core>
+        <jackson.core>2.14.0</jackson.core>
         <java.version>11</java.version>
     </properties>
     <dependencies>
@@ -56,22 +59,35 @@
         <dependency>
             <groupId>org.liquibase</groupId>
             <artifactId>liquibase-core</artifactId>
+            <version>${liquibase.version}</version>
         </dependency>
         <!-- cloud -->
         <dependency>
             <groupId>org.springframework.cloud</groupId>
+            <artifactId>spring-cloud-dependencies</artifactId>
+            <version>${spring-cloud.version}</version>
+            <type>pom</type>
+            <scope>import</scope>
+        </dependency>
+        <dependency>
+            <groupId>org.springframework.cloud</groupId>
+            <artifactId>spring-cloud-starter-bootstrap</artifactId>
+            <version>${spring-cloud-last.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>org.springframework.cloud</groupId>
             <artifactId>spring-cloud-starter-config</artifactId>
-            <version>${springframework.cloud}</version>
+            <version>${spring-cloud-last.version}</version>
         </dependency>
         <dependency>
             <groupId>org.springframework.cloud</groupId>
             <artifactId>spring-cloud-starter-openfeign</artifactId>
-            <version>${springframework.cloud}</version>
+            <version>${spring-cloud-last.version}</version>
         </dependency>
         <dependency>
             <groupId>org.springframework.cloud</groupId>
             <artifactId>spring-cloud-starter-netflix-eureka-client</artifactId>
-            <version>${springframework.cloud}</version>
+            <version>${spring-cloud-last.version}</version>
         </dependency>
         <dependency>
             <groupId>org.springframework.cloud</groupId>
@@ -159,7 +175,7 @@
         <dependency>
             <groupId>io.swagger.core.v3</groupId>
             <artifactId>swagger-annotations</artifactId>
-            <version>2.2.4</version>
+            <version>${core-v3-swagger-annotations.ver}</version>
         </dependency>
         <dependency>
             <groupId>org.springdoc</groupId>
@@ -177,14 +193,9 @@
             <optional>true</optional>
         </dependency>
         <dependency>
-            <groupId>org.springframework.boot</groupId>
-            <artifactId>spring-boot-starter-tomcat</artifactId>
-            <scope>provided</scope>
-        </dependency>
-        <dependency>
             <groupId>org.springframework.cloud</groupId>
             <artifactId>spring-cloud-starter</artifactId>
-            <version>${springframework.cloud}</version>
+            <version>${spring-cloud-last.version}</version>
             <scope>test</scope>
         </dependency>
         <dependency>
@@ -198,12 +209,6 @@
             <version>${testcontainers.version}</version>
             <scope>test</scope>
         </dependency>
-        <dependency>
-            <groupId>com.playtika.testcontainers</groupId>
-            <artifactId>embedded-postgresql</artifactId>
-            <version>2.2.11</version>
-            <scope>test</scope>
-        </dependency>
     </dependencies>
 
     <build>
@@ -211,6 +216,7 @@
             <plugin>
                 <groupId>org.springframework.boot</groupId>
                 <artifactId>spring-boot-maven-plugin</artifactId>
+                <version>3.0.1</version>
                 <configuration>
                     <excludes>
                         <exclude>

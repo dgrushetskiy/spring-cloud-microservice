@@ -18,12 +18,12 @@ import org.springframework.web.bind.annotation.RestController;
 @RequiredArgsConstructor
 public class HealthCheckController {
 
-    @Operation(summary = "Проверка сервиса документов", description = "Состояние модуля документов")
-    @GetMapping("/health")
-    public ResponseEntity<Health> check() {
-        Health health = Health.up()
-        .withDetail("liveness","liveness")
-                              .build();
-        return new ResponseEntity<>(health, HttpStatus.OK);
-    }
+  @Operation(summary = "Проверка сервиса пользователей", description = "Состояние сервиса пользователей")
+  @GetMapping("/health")
+  public ResponseEntity<Health> check() {
+    Health health = Health.up()
+        .withDetail("liveness", "liveness")
+        .build();
+    return new ResponseEntity<>(health, HttpStatus.OK);
+  }
 }

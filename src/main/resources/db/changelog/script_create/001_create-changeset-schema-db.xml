@@ -8,13 +8,13 @@
     <!-- schema for liquibase -->
     <changeSet id="create-scheme-liquibase_schema" author="dg">
         <sql>
-            CREATE SCHEMA IF NOT EXISTS liquibase_schema AUTHORIZATION root;
+            CREATE SCHEMA IF NOT EXISTS liquibase_schema;
         </sql>
     </changeSet>
     <!-- schema for cars -->
     <changeSet id="create-scheme-auth" author="dg">
         <sql>
-            CREATE SCHEMA IF NOT EXISTS auth AUTHORIZATION root;
+            CREATE SCHEMA IF NOT EXISTS auth;
         </sql>
     </changeSet>
 </databaseChangeLog>

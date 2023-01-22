@@ -6,17 +6,17 @@
                    http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.8.xsd">
 
     <!-- Здесь мы позже напишем скрипт -->
-    <changeSet id="drop-table-roles" author="dg">
+    <changeSet id="drop-table-users-bills" author="dg">
         <preConditions onFail="MARK_RAN">
-            <tableExists tableName="roles"/>
+            <tableExists tableName="users_bills"/>
         </preConditions>
-        <dropTable cascadeConstraints="true" tableName="roles" schemaName="auth"/>
+        <dropTable cascadeConstraints="true" tableName="users_bills" schemaName="auth"/>
     </changeSet>
     <!-- create table roles -->
-    <changeSet id="create-table-roles" author="dg">
-        <createTable tableName="roles" schemaName="auth">
+    <changeSet id="create-table-users-bills" author="dg">
+        <createTable tableName="users_bills" schemaName="auth">
             <column autoIncrement="true" name="id" type="bigserial">
-                <constraints primaryKey="true" nullable="false" primaryKeyName="pk_roles"/>
+                <constraints primaryKey="true" nullable="false" primaryKeyName="pk_users_bills"/>
             </column>
             <column name="created_at" type="timestamp" defaultValueDate="CURRENT_TIMESTAMP(3)">
                 <constraints nullable="false"/>
@@ -27,21 +27,12 @@
             <column name="active" type="boolean" defaultValue="false">
                 <constraints nullable="false"/>
             </column>
-            <column name="role_name" type="varchar(200)">
-                <constraints nullable="false" unique="true" uniqueConstraintName="unq_roles_role_name_key"/>
+            <column name="user_id" type="bigint">
+                <constraints nullable="false"/>
             </column>
-            <column name="description" type="varchar(512)">
-                <constraints nullable="false" unique="true"/>
+            <column name="billing_uuid" type="uuid">
+                <constraints nullable="false"/>
             </column>
         </createTable>
-        <!-- Добавляем вторичный ключ role_id -->
-        <addForeignKeyConstraint baseTableSchemaName="auth"
-                                 baseColumnNames="role_id"
-                                 baseTableName="users_roles"
-                                 constraintName="fk_users_roles_roles"
-                                 referencedColumnNames="id"
-                                 referencedTableName="roles"
-                                 onDelete="CASCADE"
-                                 onUpdate="RESTRICT"/>
     </changeSet>
 </databaseChangeLog>

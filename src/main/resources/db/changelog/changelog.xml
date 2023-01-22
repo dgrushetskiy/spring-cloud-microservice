@@ -13,9 +13,11 @@
 
     <include file="script_create/001_create-changeset-schema-db.xml" relativeToChangelogFile="true"/>
     <include file="script_create/002_create-changeset-users-roles-table.xml" relativeToChangelogFile="true"/>
-    <include file="script_create/003_create-changeset-users-table.xml" relativeToChangelogFile="true"/>
-    <include file="script_create/004_create-changeset-roles-table.xml" relativeToChangelogFile="true"/>
-    <include file="script_insert/005_insert-data-changeset-roles-table.xml" relativeToChangelogFile="true"/>
-<!--    <include file="script_create/006_create-changeset-role-company-table.xml" relativeToChangelogFile="true"/>-->
+    <include file="script_create/003_create-changeset-users-bills-table.xml" relativeToChangelogFile="true"/>
+    <include file="script_create/004_create-changeset-users-table.xml" relativeToChangelogFile="true"/>
+    <include file="script_create/005_create-changeset-roles-table.xml" relativeToChangelogFile="true"/>
+
+    <include file="script_insert/006_insert-data-changeset-roles-table.xml" relativeToChangelogFile="true"/>
+
 
 </databaseChangeLog>
